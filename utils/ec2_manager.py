@@ -31,13 +31,9 @@ class ClusterEC2Manager:
         return self.return_valid_instances(nodes)
 
     def return_valid_instances(self, instances):
-        results = []
-        for instance in instances:
-            if instance.private_ip_address != None:
-                results.append(instance)
+        return list(filter(lambda x: x.private_ip_address != None, instances))
 
-        return results
-
+    # For telegraf
     def prometheus_logger(self, prefix ,instances):
         for instance in instances:
             print('{0},Cluster={1},Address={2} health={3} {4}000000000'.format(prefix, self.cluster['clusterName'], instance.private_ip_address, ("0", "1")[instance.state['Name'] == 'running'] ,self.now.microsecond))
@@ -47,9 +43,7 @@ class ClusterEC2Manager:
 #     "clusterId": "dylan.k8s.platform.myobdev.com",
 #     "clusterName": "dylan"
 # })
-# # cec2_manager.get_nodes_status()
-# # cec2_manager.get_masters_status()
-# # print(cec2_manager.get_etcd_status())
-#
-# for instance in cec2_manager.get_etcd_status():
-#     print(instance.private_ip_address)
+# etcd_instances = cec2_manager.get_etcd_status()
+# for item in etcd_instances:
+#     print(item.private_ip_address)
+# cec2_manager.prometheus_logger('prefix', etcd_instances)
