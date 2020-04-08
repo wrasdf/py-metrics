@@ -4,6 +4,6 @@ psutil==5.4.6
 python-magic==0.4.15
 requests==2.19.1
 s3cmd==2.0.2
-prometheus-client==0.3.0
+prometheus-client==0.7.1
 unittest2==1.1.0
 green==2.12.1
