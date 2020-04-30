@@ -1,5 +1,5 @@
 awscli==1.15.59
-boto3==1.7.58
+boto3==1.12.49
 psutil==5.4.6
 python-magic==0.4.15
 requests==2.19.1
